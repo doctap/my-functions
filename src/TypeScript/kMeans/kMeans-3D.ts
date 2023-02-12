@@ -37,7 +37,7 @@ function getDistances(centers: [number, number, number][], points: [number, numb
 	})));
 }
 
-function getDistance(point: [number, number, number], secondPoint: [number, number, number]) {
+export function getDistance(point: [number, number, number], secondPoint: [number, number, number]) {
 	return Math.sqrt(Math.pow(point[0] - secondPoint[0], 2) + Math.pow(point[1] - secondPoint[1], 2) + Math.pow(point[2] - secondPoint[2], 2));
 }
 
