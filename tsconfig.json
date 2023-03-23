@@ -8,12 +8,15 @@
 		"strict": true,
 		"esModuleInterop": true,
 		"allowJs": true,
+		"lib": [
+			"es6"
+		],
 	},
-	"include":[
+	"include": [
 		"src/**/*"
-  ],
-  "exclude": [
-	"./dist",
-	"./node_modules"
-  ],
+	],
+	"exclude": [
+		"./dist",
+		"./node_modules"
+	],
 }
