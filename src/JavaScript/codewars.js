@@ -259,4 +259,99 @@ function getMatrix(a, splitter) {
 	return matrix;
 }
 
-console.log(getMatrix([1, 2, 3, 4, 6, 23, 2, 12, 3, 54, 6], 2))
+// console.log(getMatrix([1, 2, 3, 4, 6, 23, 2, 12, 3, 54, 6], 2))
+
+// -----------------------------------------
+
+const getDiamond = (width) => {
+	if (width % 2 == 0 || width < 0) return null;
+	const getRow = (num) => {
+		const spaces = (width - num) / 2;
+		return ' '.repeat(spaces) + '*'.repeat(num) + ' '.repeat(spaces) + '\n';
+	}
+
+	let result = '';
+
+	const createArray = (num) => {
+		let arr = [num];
+		for (let i = 1; i <= (num - 1) / 2; i++) {
+			arr.unshift(num - i * 2);
+			arr.push(num - i * 2);
+		}
+		return arr;
+	}
+
+	createArray(width).forEach(row => {
+		result += getRow(row);
+	})
+
+	return result.replace(/\n+$/, "");
+}
+
+// console.log(getDiamond(5));
+// console.log(getDiamond(7));
+// console.log(getDiamond(9));
+// console.log(getDiamond(8));
+// console.log(getDiamond(-3));
+
+// ===============================
+
+const add = (...rest) => Math.round(rest.reduce((p, c, i) => p + (c / (i + 1)), 0));
+
+// console.log(add(4, -3, -2))
+
+// ========================
+
+function validParentheses(parenStr) {
+
+	const stack = [];
+
+	for (let i = 0; i < parenStr.length; i++) {
+		const elem = parenStr[i];
+		if (elem === '(') stack.push(elem);
+		if (elem === ')') {
+			const lastEl = stack.pop();
+			if (!lastEl) return false;
+		}
+	}
+
+	return stack.length === 0;
+}
+
+// console.log(validParentheses('()'), true);
+// console.log(validParentheses('((()))'), true);
+// console.log(validParentheses('()()()'), true);
+// console.log(validParentheses('(()())()'), true);
+// console.log(validParentheses('()(())((()))(())()'), true);
+
+// console.log(validParentheses(')('), false);
+// console.log(validParentheses('()()('), false);
+// console.log(validParentheses('((())'), false);
+// console.log(validParentheses('())(()'), false);
+// console.log(validParentheses(')()'), false);
+// console.log(validParentheses(')'), false);
+
+// =======================
+
+function removeParentheses(s){
+
+	// let str = s;
+
+	const stack = [];
+
+	for (let i = 0; i < s.length; i++) {
+		const el = s[i];
+		if (el === '(') {
+			stack.push(i);
+		} else if (el === ')') {
+			s = s.slice(0, stack.pop()) + s.slice(i + 1);
+		}
+	}
+
+	return s;
+}
+
+// console.log(removeParentheses("example(unwanted thing)example"));
+// console.log(removeParentheses("example (unwanted thing) example"));
+// console.log(removeParentheses("a (bc d)e"));
+console.log(removeParentheses("hello example (words(more words) here) something"));
