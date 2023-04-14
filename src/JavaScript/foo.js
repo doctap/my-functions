@@ -124,28 +124,19 @@ const kamila = {
 // vasy.someFunc.call(kamila, 'develop', '8-909809-98687');
 // vasy.someFunc.apply(kamila, ['SOMEJOB', '65465-6576-1111']);
 
+// ===============================
 
-export const searchS = (arr, inputs) =>
-  arr
-    .filter(x => x === "A" || x === "B" || x === "C")
-    .reduce((prev, x) => {
-      prev[x] = inputs.filter(y => x === y).length + prev[x];
-
-      return prev;
-    },
-      { A: 0, B: 0, C: 0 });
-
-export const searchV = (arr, inputs) => {
-  let C = 0, B = 0, A = 0;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === inputs[0]) {
-      C++;
-    } else if (arr[i] === inputs[1]) {
-      B++;
-    } else if (arr[i] === inputs[2]) {
-      A++;
-    }
-  }
-  return { C, B, A };
+function makeCounter() {
+  let count = 0;
+  return function() {
+    return count++;
+  };
 }
 
+let counter_1 = makeCounter();
+let counter_2 = makeCounter();
+console.log(counter_1()); // 0
+console.log(counter_1()); // 1
+console.log(counter_1()); // 2
+
+console.log(counter_2())

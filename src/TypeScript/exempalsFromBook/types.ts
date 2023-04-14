@@ -60,7 +60,7 @@ interface ISomeThing {
   [key: string | number]: string
 }
 
-let bread: ISomeThing =  {
+let bread: ISomeThing = {
   crumbs: 'bread-crumbs',
 }
 
@@ -169,7 +169,7 @@ const testScope = (text: any) => {
 interface IFace {
   eyes: string
   ear: string
-} 
+}
 
 function isStringAsserts_1(value: any): asserts value is IFace {
   if (typeof value !== 'object') {
@@ -183,7 +183,7 @@ const testScope_1 = (text: any) => {
 
   isStringAsserts_1(text);
 
-  return  text.ear // type IFace
+  return text.ear // type IFace
 
 }
 
@@ -231,17 +231,17 @@ if (v1.qee) {
 // Ковариантность
 class Animal_12 {
   public type: string = 'animal';
-  public life() {};
+  public life() { };
 }
 
 class Bird_12 extends Animal_12 {
   public name: string = 'Bird';
-  public fly() {};
+  public fly() { };
 }
 
 class Fish_12 extends Animal_12 {
   public name: string = 'Fish';
-  public swim() {};
+  public swim() { };
 }
 
 const birdAll: Bird_12[] = [
@@ -275,9 +275,9 @@ interface ISomeType {
 
 let v3 = { name: 'string' };
 let v4 = { name: 'string', age: 3 };
-let v5 = { };
+let v5 = {};
 
-let v6: ISomeType = { name: ''};
+let v6: ISomeType = { name: '' };
 // let v7: ISomeType = { name: '', age: 5}; // Error
 // let v8: ISomeType = { }; // Error
 
@@ -290,7 +290,7 @@ v9.name
 // совместимость типов параметров функций
 type T1 = (p1: number, p2?: string) => void;
 
-let f3: T1 = (p3: number) => {};
+let f3: T1 = (p3: number) => { };
 // let f4: T1 = (p3: number, oi?: boolean) => {}; // Error
 
 type T2 = (p1: number, p2: string) => void;
@@ -309,4 +309,13 @@ type TP = Pick<IR, 'a' | 'c'>;
 
 // ==========================
 
+// Условные типы "тернарный оператор"
+
+type conditional_T<T1, T2> = T1 extends T2 ? 'совместим' : 'несовместим';
+
+type Horse = conditional_T<'лошадь', string>;
+
+type Bear = conditional_T<'строка', number>;
+
+// ============================
 
