@@ -1,3 +1,5 @@
+const { addIterableMethodsInArray } = require("iterate_library");
+
 const arr = ['1', '2', '3', '4', '5'];
 
 function arrRevers(array) {
@@ -80,8 +82,7 @@ function debounce(callBack, delay) {
     }
     timer = setTimeout(() => {
       callBack(...args)
-    }, delay
-    );
+    }, delay);
   };
 }
 
@@ -128,15 +129,58 @@ const kamila = {
 
 function makeCounter() {
   let count = 0;
-  return function() {
+  return function () {
     return count++;
   };
 }
 
 let counter_1 = makeCounter();
 let counter_2 = makeCounter();
-console.log(counter_1()); // 0
-console.log(counter_1()); // 1
-console.log(counter_1()); // 2
+// console.log(counter_1()); // 0
+// console.log(counter_1()); // 1
+// console.log(counter_1()); // 2
 
-console.log(counter_2())
+// console.log(counter_2())
+
+const array = addIterableMethodsInArray([
+  {
+    rating: 1,
+    numbers: [1, 11, 111],
+  },
+  {
+    rating: 2,
+    numbers: [2, 22, 222],
+  },
+  {
+    rating: 3,
+    numbers: [3, 33, 333],
+  },
+  {
+    rating: 4,
+    numbers: [4, 44, 444],
+  },
+  {
+    rating: 5,
+    numbers: [5, 55, 555],
+  },
+]);
+
+const result = array
+  .enumerableFilter(x => {
+    console.log(x.rating, 'enumerableFilter');
+    return x.rating > 3;
+  })
+  .enumerableSome(x => {
+    console.log(x.rating, 'enumerableSome');
+    return x.rating > 2;
+  });
+
+const resultNative = array
+  .filter(x => {
+    console.log(x.rating, 'filter');
+    return x.rating > 3;
+  })
+  .some(x => {
+    console.log(x.rating, 'some');
+    return x.rating > 2;
+  });

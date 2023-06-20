@@ -220,17 +220,17 @@ function humanReadable(seconds) {
  * @param {string} parens 
  * @returns boolean
  */
-function validParentheses(parens) {
-	let pairs = [];
-	if (parens === '') return true;
-	if (parens[0] === '(' && parens) {
-		[...parens].forEach(v => {
-			(v === '(') ? (pairs.push([v])) : (pairs.find(a => a.length === 1)) ? (pairs.find(a => a.length === 1).push(v)) : (pairs.push([v]))
-		})
-		return pairs.every(ar => ar[0] === '(' && ar[1] === ')')
-	}
-	return false;
-}
+// function validParentheses(parens) {
+// 	let pairs = [];
+// 	if (parens === '') return true;
+// 	if (parens[0] === '(' && parens) {
+// 		[...parens].forEach(v => {
+// 			(v === '(') ? (pairs.push([v])) : (pairs.find(a => a.length === 1)) ? (pairs.find(a => a.length === 1).push(v)) : (pairs.push([v]))
+// 		})
+// 		return pairs.every(ar => ar[0] === '(' && ar[1] === ')')
+// 	}
+// 	return false;
+// }
 
 // console.log(validParentheses("()))"), false)
 // console.log(validParentheses("(())((()())())"), true)
@@ -333,25 +333,247 @@ function validParentheses(parenStr) {
 
 // =======================
 
-function removeParentheses(s){
+function removeParentheses(s) {
 
-	// let str = s;
-
-	const stack = [];
+	let result = '';
+	let count = 0;
 
 	for (let i = 0; i < s.length; i++) {
-		const el = s[i];
-		if (el === '(') {
-			stack.push(i);
-		} else if (el === ')') {
-			s = s.slice(0, stack.pop()) + s.slice(i + 1);
+		if (s[i] === '(') {
+			count++;
+		} else if (s[i] === ')') {
+			count--;
+		} else if (count === 0) {
+			result += s[i];
 		}
 	}
 
-	return s;
+	return result;
 }
 
 // console.log(removeParentheses("example(unwanted thing)example"));
 // console.log(removeParentheses("example (unwanted thing) example"));
 // console.log(removeParentheses("a (bc d)e"));
-console.log(removeParentheses("hello example (words(more words) here) something"));
+// console.log(removeParentheses("hello example (words(more words) here) something"));
+
+
+const removeZeros = a => {
+
+	while (true) {
+		if (a[0] === 0) {
+			a.shift();
+		} else {
+			break;
+		}
+	}
+
+	while (true) {
+		if (a[a.length - 1] === 0) {
+			a.pop();
+		} else {
+			break;
+		}
+	}
+
+	return a;
+};
+
+// =================
+
+var greatestDistance = function (data) {
+
+	let o = {};
+
+	for (let i = 0; i < data.length; i++) {
+		const num = data[i];
+
+		if (o[`${num}`] !== undefined) {
+			o[`${num}`] = o[`${num}`] - i;
+		} else {
+			o[`${num}`] = i;
+		}
+	} [2, 3, 7, 5, 6, 7, 3, 9, 3]
+
+	return Math.abs(Object.values(o).reduce((p, c) => p = p < c ? p : c, 0));
+
+};
+
+// ====================
+
+function deepCount(a) {
+
+	const queue = [...a];
+
+	while (Array.isArray(queue[queue.length - 1])) {
+
+		const last = queue.pop();
+
+		if (last.length === 0) {
+			queue.unshift([])
+		} else {
+			queue.push(...last);
+			queue.unshift([])
+
+		}
+	}
+
+
+	return queue.length;
+}
+
+// ======================
+
+function productArray(numbers) {
+	let prod = numbers.reduce((prev, cur) => prev * cur)
+
+	let result = [...numbers];
+	numbers.forEach((elem, index) => result[index] = prod / elem);
+
+	return result;
+}
+
+//===================
+
+function minSum(arr) {
+
+	let sorted = arr.sort((a, b) => a - b);
+	let result = 0;
+
+	for (let i = 0; i < (sorted.length / 2); i++) {
+		result += sorted[i] * sorted[sorted.length - (i + 1)]
+	}
+
+	return result;
+}
+
+// =========================
+
+const maxProduct = (n, s) => {
+	n.sort((a, b) => b - a).length = s;
+	return n.reduce((p, c) => p * c);
+}
+
+// ==========================
+
+function arrayLeaders(numbers) {
+
+	let sum = 0;
+	const result = [];
+
+	for (let i = 0; i < numbers.length; i++) {
+		for (let j = i; j < numbers.length; j++) {
+			if (numbers[j + 1] === undefined) break;
+			sum += numbers[j + 1];
+		}
+		if (numbers[i] > sum) {
+			result.push(numbers[i]);
+		}
+		sum = 0;
+	}
+
+	return result;
+}
+
+// =========================
+
+function maxGap(numbers) {
+	return numbers.sort((a, b) => b - a).reduce((acc, curr, ind, arr) => {
+		if (arr[ind + 1] !== undefined) {
+			let gap = curr - arr[ind + 1];
+			acc = acc < gap ? gap : acc
+		}
+		return acc;
+	}, 0);
+}
+
+// ====================
+
+let object = {
+	a: 1,
+	b: 2,
+	c: 3,
+	d: 4
+}
+
+// for (const key in object) {
+// 	if (Object.hasOwnProperty.call(object, key)) {
+// 		const element = object[key];
+// 		console.log(key, element)
+// 	}
+
+// 	// console.log(object[key])
+// }
+
+const get = (keySequence, nestedObject) => {
+	const keys = keySequence.split('.');
+
+	if (!nestedObject) return undefined;
+
+	for (const key of keys) {
+		if (nestedObject[key]) {
+			nestedObject = nestedObject[key];
+		} else {
+			return undefined;
+		}
+	}
+	return nestedObject;
+}
+
+// example 1
+let str1 = 'red.big.apple';
+let obj1 = { red: { big: { apple: 'qwe' } } }
+
+// example 2
+let str2 = 'red.fast.fence.car'
+let obj2 = { red: { slow: 'something' } }
+
+// console.log(get(str1, obj1));
+// console.log(get(str2, obj2));
+
+// =======================
+
+function arrayDepth(array) {
+
+	let entries = array.filter(v => Array.isArray(v));
+	let count = 1;
+
+	while (entries.some(en => Array.isArray(en))) {
+		entries = entries.flat();
+		count++;
+	}
+
+	return count;
+}
+
+// ========================
+
+function findHack(arr) {
+
+	const points = { A: 30, B: 20, C: 10, D: 5 };
+	const hacked = [];
+
+	arr.forEach(s => {
+		const [name, studentPoints, grades] = s;
+
+		const studentActualPoints = grades.reduce((acc, g, _, a) => {
+			acc.grade += points[g];
+
+			if (g === 'A' || g === 'B') {
+				acc.gradeCount++;
+				let isExcellent = a.every(r => r === 'A' || r === 'B');
+				if (isExcellent && acc.gradeCount >= 5) acc.grade = acc.grade + 20;
+			}
+
+			return acc;
+		}, { grade: 0, gradeCount: 0 })
+
+		if (studentPoints !== studentActualPoints.grade) {
+			hacked.push(name);
+		}
+
+	})
+
+	return hacked;
+}
+
+module.exports = { findHack };
