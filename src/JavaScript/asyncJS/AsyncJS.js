@@ -76,17 +76,17 @@ function closureGena() {
 const generator = closureGena();
 const iterator = generator();
 
-let res = iterator.next();
-console.log(res.value, 'first');
+// let res = iterator.next();
+// console.log(res.value, 'first');
 
-res = iterator.next();
-console.log(res.value, 'second');
+// res = iterator.next();
+// console.log(res.value, 'second');
 
-res = iterator.next();
-console.log(res.value, 'third');
+// res = iterator.next();
+// console.log(res.value, 'third');
 
-res = iterator.next();
-console.log(res.value, 'end');
+// res = iterator.next();
+// console.log(res.value, 'end');
 
 //=====================
 
@@ -118,3 +118,25 @@ function run(gen) {
       })(next);
     });
 }
+
+// ========================
+
+function *tryGena(from, to) {
+  while (from < to) {
+    yield from++;
+  }
+  while (from > 0) {
+    yield from--;
+  }
+  return from;
+}
+
+const it = tryGena(1, 10)
+console.log([...it])
+
+const foo = [1,2,3,4,5,6]
+const fooIterator = foo[Symbol.iterator]()
+
+console.log([...fooIterator])
+
+// =========================
