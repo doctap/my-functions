@@ -72,12 +72,30 @@ function extensionFactory(Main) {
   }
 }
 
-// const extendedClass = extensionFactory(Sirop);
-// const instanceExtendedSiropClass = new extendedClass(3, 4)
+// const ExtendedClassFromSirop = extensionFactory(Sirop);
+// const instanceExtendedSiropClass = new ExtendedClassFromSirop(3, 4)
 
 // console.log(instanceExtendedSiropClass.r)
 // console.log(instanceExtendedSiropClass.e)
 // console.log(instanceExtendedSiropClass.q)
 // console.log(instanceExtendedSiropClass.w)
 
-// ===
+// === Easy using for extenuation array methods
+
+class EasyArray extends Array {
+  get firstElem () {
+    return this[0];
+  }
+
+  get lastElem () {
+    return this[this.length - 1];
+  }
+}
+
+const myArr = new EasyArray(1,3,5,7);
+myArr.push(12)
+
+// console.log(myArr.firstElem);
+// console.log(myArr.lastElem);
+
+//===

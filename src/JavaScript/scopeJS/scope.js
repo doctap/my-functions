@@ -25,3 +25,18 @@ function q () {
 
 // =======================
 
+// Использование блочной области видимости
+
+function name(params) {
+  let qw = 'qw';
+  {
+    let er = 'er';
+    console.log(qw)
+  }
+
+  console.log(er)
+}
+
+// name();
+
+// ===================
