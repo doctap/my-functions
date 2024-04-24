@@ -165,22 +165,22 @@ const array = addIterableMethodsInArray([
   },
 ]);
 
-const result = array
-  .enumerableFilter(x => {
-    console.log(x.rating, 'enumerableFilter');
-    return x.rating > 3;
-  })
-  .enumerableSome(x => {
-    console.log(x.rating, 'enumerableSome');
-    return x.rating > 2;
-  });
+// const result = array
+//   .enumerableFilter(x => {
+//     console.log(x.rating, 'enumerableFilter');
+//     return x.rating > 3;
+//   })
+//   .enumerableSome(x => {
+//     console.log(x.rating, 'enumerableSome');
+//     return x.rating > 2;
+//   });
 
-const resultNative = array
-  .filter(x => {
-    console.log(x.rating, 'filter');
-    return x.rating > 3;
-  })
-  .some(x => {
-    console.log(x.rating, 'some');
-    return x.rating > 2;
-  });
+// const resultNative = array
+//   .filter(x => {
+//     console.log(x.rating, 'filter');
+//     return x.rating > 3;
+//   })
+//   .some(x => {
+//     console.log(x.rating, 'some');
+//     return x.rating > 2;
+//   });

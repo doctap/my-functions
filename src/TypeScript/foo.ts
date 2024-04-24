@@ -114,6 +114,10 @@ const getRandomString = (strLength: number) => {
 
 // =======================
 
+function map<T, R>(arr: T[], func: (arg: T, i: number, arr: T) => R): R[] {
+  return []
+}
+
 
 
 export { };
