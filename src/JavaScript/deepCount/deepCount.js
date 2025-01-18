@@ -38,4 +38,35 @@ const data = {
   },
 };
 
-console.log(deepCount(data))
+// console.log(deepCount(data))
+
+const obj1 = {
+  property1: "Some string",
+  property2: false,
+  property3: [{ propertyArr31: "tutu1" }, { propertyArr32: "tutu2" }],
+  property4: 4,
+}
+
+const obj2 = {
+  property1: "NOT RIGHT",
+  property2: false,
+  property3: [{ propertyArr31: "tutu1" }, { propertyArr32: "tutu2" }],
+  property4: 4,
+}
+
+const isEqual = (o1, o2) => {
+  const keys1 = Object.keys(o1)
+  const keys2 = Object.keys(o2)
+
+  if (keys1.length !== keys2.length) {
+    return false
+  }
+
+  const isObj = (elem) => typeof elem === 'object'
+
+  for (const key of keys1) {
+    if (isObj(keys1[key]) && isObj(keys2[key])) {
+
+    }
+  }
+}
